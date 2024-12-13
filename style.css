@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scarcity Story</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Luke's Story</h1>
+    
+    <p>Luke is a 10 year old boy that doesn't have a home. He was abandoned by his family a week ago due to a lack of money. He is not looking for a way to survive <br><br> Help him find a way to get his life back</p>
+    <img src="https://thumbs.dreamstime.com/b/world-day-against-child-labor-concept-homeless-kids-holding-two-sack-illustration-339938932.jpg" alt="Holmer" width="500px"> 
+    
+    <p>What should Luke do?</p>
+    <button>Look through the trash</button>
+    <button>Ask for money</button>
+
+</body>
+</html>
