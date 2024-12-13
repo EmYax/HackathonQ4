@@ -1,21 +1,172 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Scarcity Story</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </head>
-  <body>
-    <h1>Luke's Story</h1>
-    
-    <p>Luke is a 10 year old boy that doesn't have a home. He was abandoned by his family a week ago due to a lack of money. He is not looking for a way to survive <br><br> Help him find a way to get his life back</p>
-    <img src="https://thumbs.dreamstime.com/b/world-day-against-child-labor-concept-homeless-kids-holding-two-sack-illustration-339938932.jpg" alt="Holmer" width="500px"> 
-    
-    <p>What should Luke do?</p>
-    <button>Look through the trash</button>
-    <button>Ask for money</button>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Storyboard: A Journey of Hope</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
+    header {
+      width: 100%;
+      background: #6200ea;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .story {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .choices button {
+      padding: 10px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #6200ea;
+      color: white;
+      transition: background 0.3s;
+    }
+
+    .choices button:hover {
+      background: #3700b3;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 10px;
+      text-align: center;
+      background: #eeeeee;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>A Journey of Hope</h1>
+    <p>Help the boy find his way to a better life by making the right decisions.</p>
+  </header>
+
+      <img src="https://thumbs.dreamstime.com/b/world-day-against-child-labor-concept-homeless-kids-holding-two-sack-illustration-339938932.jpg" alt="Holmer" width="200px"> 
+
+  
+  <div class="container">
+    <div id="story-section" class="story">
+      <p>Luke is a 18 year old boy that doesn't have a home. He was abandoned by his family a week ago due to a lack of money. He is not looking for a way to survive <br><br> Help him find a way to get his life back</p>
+    </div>
+
+    <div id="choices-section" class="choices">
+      <button onclick="chooseOption('look_for_food')">Look in the trash</button>
+      <button onclick="chooseOption('option1')">Ask for money</button>
+    </div>
+  </div>
+
+  <footer>
+  </footer>
+
+  <script>
+    const storyContent = {
+      look_for_food: {
+        text: "Luke has gone though trash bins and couldn't find anything. He didn't give up and went to more. He finanly got lucky and found an xbox that was almost in new condition",
+        choices: [
+          { text: "Resell it ", action: "resell" },
+          { text: "keep it", action: "find_shelter" }
+        ]
+      },
+      find_shelter: {
+        text: "Luke kept it but he till needed a place to live",
+        choices: [
+          { text: "Go to a restaurant and ask for food", action: "rest_outside" },
+          { text: "sleep in the floor", action: "ask_for_help" }
+        ]
+      },
+      look_for_job: {
+        text: "Luke goes to the restaurant and find a good old man to help him and give him food. He even offered him to stay for the night.",
+        choices: []
+      },
+      resell: {
+        text: "He resells it. Now he has enough money and found the passion of making his own company and started to resell things he bough. He got enough money to get his own place and now lives happy.",
+        choices: []
+      },
+      rest_outside: {
+        text: "The restaurnat kicked him out and not he has nowhere to be.",
+        choices: []
+      },
+      option1: {
+        text: "He now has 10 dollars after asking for hours. ",
+        choices: [
+          { text: "Buy bread", action: "buyBread" },
+          { text: "Save the money", action: "saveMoney" }
+        ]
+      },
+      buybread: {
+        text: "He now bough some bread but only has 6 dollars remianing. What should he do?",
+        choices: [
+          { text: "Find a job", action: "findJob" },
+          { text: "Continue begging", action: "ContinueB" }
+        ]
+      },
+       ContinueB: {
+        text: "He continues to begg and beg but he never got much money. He sadly stayed like that.",
+        choices: []
+      },
+      findJob: {
+        text: "He found a job and is very happy now!",
+         choices: []
+        ]
+      },
+      ask_for_help: {
+        text: "He went to slep on the floor and a very rich man saw him and now decided to help him. He now lives with him and is very happy.",
+        choices: []
+      }
+    };
+
+    function chooseOption(action) {
+      const story = storyContent[action];
+      const storySection = document.getElementById("story-section");
+      const choicesSection = document.getElementById("choices-section");
+
+      storySection.innerHTML = `<p>${story.text}</p>`;
+
+      choicesSection.innerHTML = ""; // Clear previous choices
+      story.choices.forEach(choice => {
+        const button = document.createElement("button");
+        button.textContent = choice.text;
+        button.onclick = () => chooseOption(choice.action);
+        choicesSection.appendChild(button);
+      });
+
+      if (story.choices.length === 0) {
+        choicesSection.innerHTML = "<p>Thank you for helping the boy on his journey!</p>";
+      }
+    }
+  </script>
 </body>
 </html>
